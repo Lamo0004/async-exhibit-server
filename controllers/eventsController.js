@@ -49,7 +49,7 @@ exports.getEventById = async (req, res, next) => {
 
 exports.createEvent = async (req, res, next) => {
   try {
-    const { title, description, date, locationId, curator, artworkIds, userId } = req.body;
+    const { title, description, date, locationId, curator, artworkIds, userId, period } = req.body;
 
     if (!allowedDates.includes(date)) {
       return res.status(400).json({
@@ -70,6 +70,7 @@ exports.createEvent = async (req, res, next) => {
       locationId,
       curator,
       userId,
+      period,
       totalTickets: location.maxGuests,
       bookedTickets: 0,
       artworkIds: artworkIds || [],
